@@ -3,8 +3,7 @@ package randomstrings
 import (
 	"crypto/sha1"
 	"fmt"
-	"github.com/Pallinder/sillyname-go"
-	"strings"
+	"github.com/Pallinder/go-randomdata"
 	"time"
 )
 
@@ -13,13 +12,11 @@ import (
 // random strings that should be used as semi-unique identifiers (as lowercase alphabetical-only string with
 // reasonable size almost always can be used as valid identifier).
 func ForHuman() string {
-	lowerCased := strings.ToLower(sillyname.GenerateStupidName())
-	return strings.Replace(lowerCased, " ", "", -1)
+	return fmt.Sprintf("%s%s", randomdata.Adjective(), randomdata.Noun())
 }
 
 func ForHumanWithDash() string {
-	lowerCased := strings.ToLower(sillyname.GenerateStupidName())
-	return strings.Replace(lowerCased, " ", "-", -1)
+	return fmt.Sprintf("%s-%s", randomdata.Adjective(), randomdata.Noun())
 }
 
 func ForHumanWithHash() string {
@@ -29,6 +26,8 @@ func ForHumanWithHash() string {
 func ForHumanWithDashAndHash() string {
 	return ForHumanWithDash() + "-" + timestampHash()[:6]
 }
+
+// Private helpers
 
 func timestampHash() string {
 	hash := sha1.New()

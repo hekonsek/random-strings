@@ -5,16 +5,24 @@ import (
 	"testing"
 )
 
-func TestForHuman(t *testing.T) {
+func TestForHumanIsNotEmpty(t *testing.T) {
 	t.Parallel()
 	assert.NotEmpty(t, ForHuman())
 }
 
-func TestForHumanWithHash(t *testing.T) {
+func TestForHumanDoesNotContainSpaces(t *testing.T) {
 	t.Parallel()
+	assert.NotContains(t, ForHuman(), " ")
+}
 
-	name := ForHumanWithHash()
-	assert.NotEmpty(t, name)
+func TestForHumanWithHashNotEmpty(t *testing.T) {
+	t.Parallel()
+	assert.NotEmpty(t, ForHumanWithHash())
+}
+
+func TestForHumanWithHashDoesNotContainSpaces(t *testing.T) {
+	t.Parallel()
+	assert.NotContains(t, ForHumanWithHash(), " ")
 }
 
 func TestForHumanMustBeLongerThanEightCharacters(t *testing.T) {
